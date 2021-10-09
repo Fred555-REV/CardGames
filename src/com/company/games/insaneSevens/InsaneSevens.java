@@ -53,7 +53,7 @@ public class InsaneSevens {
             discard.add(deck.deal());
             deck.shuffle();
         } while (discard.get(0).rank.equals("8"));
-        draw();
+        deal();
         while (turn(activeHand())) {
             passTurn();
         }
@@ -62,7 +62,7 @@ public class InsaneSevens {
 
     }
 
-    private void draw() {
+    private void deal() {
         System.out.println("Drawing...");
         for (int i = 0; i < 5; i++) {
             hands.forEach(hand -> hand.draw(deck.deal()));
@@ -75,25 +75,45 @@ public class InsaneSevens {
 
         int choice = activeHand.getSelection(discard.get(discard.size() - 1));
         if (choice == 0) {
-            if (deck.size() == 0) {
-                Card activeCard52 = discard.remove(discard.size() - 1);
-                deck.addDeck(discard);
-                discard.add(activeCard52);
-            }
-            activeHand.draw(deck.deal());
+            draw();
         } else {
             Card card = activeHand.takeCard(choice - 1);
-            if (card.rank.equals("7")) {
-                discard.remove(discard.size()-1);
-                discard.add(new Card52("7",
-                        Card52.suits.get(
-                                Console.getInt(1, 4, "Select suit 1-4 " + Card52.suits, "Invalid Selection") - 1)));
-            } else {
-                discard.add(card);
-            }
+            playCard(card);
         }
         return activeHand.getHandValue() != 0;
 
+    }
+
+    private void playCard(Card card) {
+
+        if (card.rank.equals("7")) {
+            discard.remove(discard.size() - 1);
+            discard.add(new Card52("7",
+                    Card52.suits.get(
+                            Console.getInt(1, 4, "Select suit 1-4 " + Card52.suits, "Invalid Selection") - 1)));
+        } else {
+            discard.add(card);
+        }
+    }
+
+    private void draw() {
+        if (deck.size() == 0) {
+            Card activeCard52 = discard.remove(discard.size() - 1);
+            deck.addDeck(discard);
+            discard.add(activeCard52);
+        }
+        Card card = deck.deal();
+
+        if (card.rank.equals(discard.get(discard.size() - 1).rank)
+                || card.suit.equals(discard.get(discard.size() - 1).suit)) {
+            System.out.println("Drew " + card);
+
+            if (Console.getInt(1, 2, "(1) Play? (2) Keep?", "Invalid Input") == 1) {
+                discard.add(card);
+            } else {
+                activeHand().draw(card);
+            }
+        }
     }
 
     private void passTurn() {
