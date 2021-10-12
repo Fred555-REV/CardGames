@@ -108,9 +108,7 @@ public class Hand {
     public void displayHand() {
         StringBuilder output = new StringBuilder();
         output.append(Color.getColor(player)).append(player.getName()).append("\n");
-        for (Card card : cards) {
-            output.append(card).append("|");
-        }
+        cards.forEach(card -> output.append(card).append("|"));
         output.append("\n");
         output.append(Color.RESET);
         System.out.println(output);
