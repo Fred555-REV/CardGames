@@ -57,19 +57,19 @@ public class Card52 extends Card {
         switch (suit) {
             case "C":
             case "\u2664":
-                return "Green";
+//                 return "Green";
             case "S":
             case "\u2665":
-                return "Yellow";
-//                return "Black";
+//                 return "Yellow";
+               return "Black";
             case "H":
             case "\u2666":
-                return "Red";
+//                 return "Blue";
             case "D":
             case "\u2667":
+                return "Red";
             default:
-                return "Blue";
-//                return "White";
+               return "White";
         }
     }
 
