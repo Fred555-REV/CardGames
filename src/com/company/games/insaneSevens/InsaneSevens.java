@@ -14,7 +14,6 @@ public class InsaneSevens {
     List<Hand> hands = new ArrayList<>();
     DeckI deck;
     List<Card> discard = new ArrayList<>();
-    Card activeCard;
     int turnCounter;
 
     public InsaneSevens() {
@@ -110,10 +109,10 @@ public class InsaneSevens {
 
             if (Console.getInt(1, 2, "(1) Play? (2) Keep?", "Invalid Input") == 1) {
                 discard.add(card);
-            } else {
-                activeHand().draw(card);
+                return;
             }
         }
+        activeHand().draw(card);
     }
 
     private void passTurn() {

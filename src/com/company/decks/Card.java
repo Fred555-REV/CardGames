@@ -15,7 +15,7 @@ public abstract class Card {
         this.suit = suit;
         value = getValue(rank);
         color = getColor(suit);
-        name = String.format("%s%s of %s%s",
+        name = String.format("%s%s %s%s",
                 Color.getColor(color), rank, suit, Color.RESET);
 
     }
@@ -25,7 +25,7 @@ public abstract class Card {
     protected abstract String getColor(String suit);
 
     public String toString() {
-        return String.format(" %s%s of %s%s ",
+        return String.format(" %s%s %s%s ",
                 Color.getColor(color), rank, suit, Color.RESET);
     }
 }

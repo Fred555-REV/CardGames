@@ -1,13 +1,19 @@
 package com.company;
 
+import com.company.games.insaneSevens.InsaneSevens;
 import com.company.games.uno.Uno;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
         // write your code here
-        Uno uno = new Uno();
-        uno.playGame();
+//        Uno uno = new Uno();
+//        uno.playGame();
+        InsaneSevens insaneSevens = new InsaneSevens();
+        insaneSevens.playGame();
     }
 }
 // Notes/Plan of Attack

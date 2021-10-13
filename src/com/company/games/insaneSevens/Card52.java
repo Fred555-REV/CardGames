@@ -56,26 +56,20 @@ public class Card52 extends Card {
     protected String getColor(String suit) {
         switch (suit) {
             case "C":
-            case "\u2664":
+            case "\u2667":
 //                 return "Green";
             case "S":
-            case "\u2665":
+            case "\u2664":
 //                 return "Yellow";
-               return "Black";
+                return "Black";
             case "H":
             case "\u2666":
 //                 return "Blue";
             case "D":
-            case "\u2667":
+            case "\u2665":
                 return "Red";
             default:
-               return "White";
+                return "White";
         }
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%s%s of %s%s\t",
-                Color.getColor(color), rank, suit, Color.RESET);
     }
 }
