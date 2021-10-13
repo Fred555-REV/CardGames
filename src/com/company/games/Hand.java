@@ -2,8 +2,11 @@ package com.company.games;
 
 import com.company.Color;
 import com.company.decks.Card;
+import com.company.games.insaneSevens.Card52;
+import com.company.games.uno.UnoCard;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Hand {
@@ -39,7 +42,8 @@ public class Hand {
             if (selection != -1) {
                 System.out.println("Invalid Card");
             }
-            selection = player.getSelection(activeCard.suit, activeCard.rank, cards.size());
+            selection = player.getSelection(activeCard.suit, activeCard.rank,
+                    Collections.unmodifiableList(cards));
             if (selection == 0) {
                 break;
             }
@@ -61,7 +65,8 @@ public class Hand {
             if (selection != -1) {
                 System.out.println("Invalid Card");
             }
-            selection = player.getSelection(color, activeCard.rank, cards.size());
+            selection = player.getSelection(color, activeCard.rank,
+                    Collections.unmodifiableList(cards));
             if (selection == 0) {
                 break;
             }
@@ -112,6 +117,18 @@ public class Hand {
         output.append("\n");
         output.append(Color.RESET);
         System.out.println(output);
+    }
+
+    public int getSuit(String suit) {
+        List<String> suits;
+        if (suit.equals("Uno")) {
+            suits = UnoCard.suits;
+        } else {
+            suits = Card52.suits;
+        }
+        return player.getSuit(
+                Collections.unmodifiableList(cards),
+                suits);
     }
 
     private void displayCards() {

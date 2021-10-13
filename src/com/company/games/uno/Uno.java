@@ -151,7 +151,7 @@ public class Uno {
                 cardsToDraw = 4;
             }
             discard.add(card);
-            color = UnoCard.suits.get(Console.getInt(1, 4, "Select color 1-4 " + UnoCard.suits, "Invalid Selection") - 1);
+            color = UnoCard.suits.get(activeHand().getSuit("Uno"));
             passTurn();
         } else if (card.rank.equals("Re")) {
             reverse();

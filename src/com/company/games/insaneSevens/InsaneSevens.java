@@ -88,8 +88,7 @@ public class InsaneSevens {
         if (card.rank.equals("7")) {
             discard.remove(discard.size() - 1);
             discard.add(new Card52("7",
-                    Card52.suits.get(
-                            Console.getInt(1, 4, "Select suit 1-4 " + Card52.suits, "Invalid Selection") - 1)));
+                    Card52.suits.get(activeHand().getSuit("52"))));
         } else {
             discard.add(card);
         }

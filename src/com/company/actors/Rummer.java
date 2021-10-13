@@ -1,6 +1,9 @@
 package com.company.actors;
 
+import com.company.decks.Card;
 import com.company.games.Actor;
+
+import java.util.List;
 
 public class Rummer implements Actor {
     public final String name;
@@ -29,8 +32,13 @@ public class Rummer implements Actor {
     }
 
     @Override
-    public int getSelection(String suit, String rank, int handSize) {
+    public int getSelection(String suit, String rank, List<Card> cards) {
 
+        return 0;
+    }
+
+    @Override
+    public int getSuit(List<Card> list, List<String> suits) {
         return 0;
     }
 
