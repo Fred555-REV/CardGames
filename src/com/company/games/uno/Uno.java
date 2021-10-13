@@ -185,22 +185,17 @@ public class Uno {
             }
             Card card = deck.deal();
             if (cardsToDraw == 1) {
-
                 if (card.rank.equals(discard.get(discard.size() - 1).rank)
                         || card.suit.equals(color)) {
                     System.out.println("Drew " + card);
 
                     if (Console.getInt(1, 2, "(1) Play? (2) Keep?", "Invalid Input") == 1) {
                         playCard(card);
-                    } else {
-                        activeHand().draw(card);
+                        return;
                     }
-
                 }
-
-            } else {
-                activeHand().draw(card);
             }
+            activeHand().draw(card);
         }
 
         cardsToDraw = 1;
