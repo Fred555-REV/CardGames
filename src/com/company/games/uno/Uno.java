@@ -87,6 +87,7 @@ public class Uno {
             previousColor = color;
             Card card = activeHand.takeCard(choice - 1);
             playCard(card);
+            passTurn();
         }
         return activeHand.getHandValue() != 0;
 
@@ -113,6 +114,7 @@ public class Uno {
         //  X
         //Go back previous
         reverse();
+        passTurn();
         Hand previousHand = activeHand();
 
         //Checks if previous player had playable card
@@ -126,6 +128,7 @@ public class Uno {
             // -1 0 1
             //    X
             reverse();
+            passTurn();
             return true;
         } else {
             //display outcome and then changes turn back to the current player
@@ -134,6 +137,7 @@ public class Uno {
             // -1 0 1
             //    X
             reverse();
+            passTurn();
             System.out.printf("%s draws 6\n", activeHand().getName());
             cardsToDraw = 6;
             return false;
@@ -142,7 +146,6 @@ public class Uno {
 
     private void reverse() {
         isReversed = !isReversed;
-        passTurn();
     }
 
     private void playCard(Card card) {
@@ -152,12 +155,10 @@ public class Uno {
             }
             discard.add(card);
             color = UnoCard.suits.get(activeHand().getSuit("Uno"));
-            passTurn();
         } else if (card.rank.equals("Re")) {
             reverse();
             color = card.suit;
         } else if (card.rank.equals("Sk")) {
-            passTurn();
             passTurn();
             color = card.suit;
         } else if (card.rank.equals("+2")) {
@@ -165,10 +166,8 @@ public class Uno {
                 cardsToDraw = 0;
             }
             cardsToDraw += 2;
-            passTurn();
             color = card.suit;
         } else {
-            passTurn();
             color = card.suit;
         }
         discard.add(card);
