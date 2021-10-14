@@ -3,6 +3,7 @@ package com.company.games;
 import com.company.Color;
 import com.company.decks.Card;
 import com.company.games.insaneSevens.Card52;
+import com.company.games.insaneSevens.InsaneSevens;
 import com.company.games.uno.UnoCard;
 
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class Hand {
             if (selection == 0) {
                 break;
             }
-            if (cards.get(selection - 1).rank.equals("7")) {
+            if (cards.get(selection - 1).rank.equals(InsaneSevens.WILD)) {
                 break;
             }
             if (cards.get(selection - 1).suit.equals(activeCard.suit) || cards.get(selection - 1).rank.equals(activeCard.rank)) {

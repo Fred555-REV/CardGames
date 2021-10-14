@@ -11,10 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InsaneSevens {
-    List<Hand> hands = new ArrayList<>();
-    DeckI deck;
-    List<Card> discard = new ArrayList<>();
-    int turnCounter;
+    private List<Hand> hands = new ArrayList<>();
+    private DeckI deck;
+    private List<Card> discard = new ArrayList<>();
+    public static String WILD = "7";
+    private int turnCounter;
 
     public InsaneSevens() {
     }
@@ -51,7 +52,7 @@ public class InsaneSevens {
             deck.addDeck(discard);
             discard.add(deck.deal());
             deck.shuffle();
-        } while (discard.get(0).rank.equals("8"));
+        } while (discard.get(0).rank.equals(WILD));
         deal();
         while (turn(activeHand())) {
             passTurn();
@@ -85,9 +86,9 @@ public class InsaneSevens {
 
     private void playCard(Card card) {
 
-        if (card.rank.equals("7")) {
+        if (card.rank.equals(WILD)) {
             discard.remove(discard.size() - 1);
-            discard.add(new Card52("7",
+            discard.add(new Card52(WILD,
                     Card52.suits.get(activeHand().getSuit("52"))));
         } else {
             discard.add(card);
