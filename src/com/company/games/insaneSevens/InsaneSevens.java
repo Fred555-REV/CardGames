@@ -101,6 +101,10 @@ public class InsaneSevens {
             deck.addDeck(discard);
             discard.add(activeCard52);
         }
+        if(deck.size()==0){
+            System.out.println("No more cards in the deck");
+            return;
+        }
         Card card = deck.deal();
 
         if (card.rank.equals(discard.get(discard.size() - 1).rank)
