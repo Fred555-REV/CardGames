@@ -48,11 +48,7 @@ public class InsaneSevens {
     }
 
     private boolean round() {
-        do {
-            deck.addDeck(discard);
-            discard.add(deck.deal());
-            deck.shuffle();
-        } while (discard.get(0).rank.equals(WILD));
+        reshuffle();
         deal();
         while (turn(activeHand())) {
             passTurn();
@@ -60,6 +56,14 @@ public class InsaneSevens {
         endRound();
         return Console.getInt(1, 2, "(1) Quit\t(2) Start next round", "Invalid Selection") != 1;
 
+    }
+
+    private void reshuffle() {
+        do {
+            deck.addDeck(discard);
+            discard.add(deck.deal());
+            deck.shuffle();
+        } while (discard.get(0).rank.equals(WILD));
     }
 
     private void deal() {
