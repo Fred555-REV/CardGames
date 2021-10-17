@@ -10,10 +10,14 @@ public class Main {
 
     public static void main(String[] args) {
         // write your code here
-//        Uno uno = new Uno();
-//        uno.playGame();
-        InsaneSevens insaneSevens = new InsaneSevens();
-        insaneSevens.playGame();
+        System.out.println("Welcome to CardGames Select a Game");
+        if (Console.getInt(1, 2, "(1)Uno\n(2)InsaneSevens", "Invalid Number") == 1) {
+            Uno uno = new Uno();
+            uno.playGame();
+        } else {
+            InsaneSevens insaneSevens = new InsaneSevens();
+            insaneSevens.playGame();
+        }
     }
 }
 // Notes/Plan of Attack
