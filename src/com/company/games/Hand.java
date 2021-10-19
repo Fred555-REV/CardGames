@@ -128,7 +128,7 @@ public class Hand {
             suits = Card52.suits;
         }
         return player.getSuit(
-                cards,
+                Collections.unmodifiableList(cards),
                 suits);
     }
 
