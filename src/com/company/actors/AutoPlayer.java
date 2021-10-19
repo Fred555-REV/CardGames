@@ -57,7 +57,7 @@ public class AutoPlayer implements Actor {
             }
         }
         String suitMax = null;
-        int max = 0;
+        int max = Integer.MIN_VALUE;
         for (String key : suitFreq.keySet()) {
             if (suitFreq.get(key) > max) {
                 suitMax = key;
