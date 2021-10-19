@@ -12,12 +12,6 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        // write your code here
-        System.out.println(Card52.suits.toString());
-        System.out.println(Card52.suits.toString());
-        System.out.println(Card52.suits.toString());
-        System.out.println(Card52.suits.toString());
-        System.out.println(Card52.suits.toString());
         System.out.println("Welcome to CardGames Select a Game");
         if (Console.getInt(1, 2, "(1)Uno\n(2)InsaneSevens", "Invalid Number") == 1) {
             Uno uno = new Uno();
