@@ -39,9 +39,10 @@ public class Card52 extends Card {
     }
 
     protected int getValue(String rank) {
+        if (rank.equals(InsaneSevens.WILD)) {
+            return 50;
+        }
         switch (rank) {
-            case "7":
-                return 50;
             case "J":
             case "Q":
             case "K":

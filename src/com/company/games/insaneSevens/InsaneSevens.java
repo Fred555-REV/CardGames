@@ -15,7 +15,7 @@ public class InsaneSevens {
     private List<Hand> hands = new ArrayList<>();
     private DeckI deck;
     private List<Card> discard = new ArrayList<>();
-    public static String WILD = "7";
+    public static final String WILD = "7";
     private int turnCounter;
 
     public InsaneSevens() {
@@ -113,16 +113,16 @@ public class InsaneSevens {
             return;
         }
         Card card = deck.deal();
-//
-//        if (card.rank.equals(discard.get(discard.size() - 1).rank)
-//                || card.suit.equals(discard.get(discard.size() - 1).suit)) {
-//            System.out.println("Drew " + card);
-//
-//            if (Console.getInt(1, 2, "(1) Play? (2) Keep?", "Invalid Input") == 1) {
-//                discard.add(card);
-//                return;
-//            }
-//        }
+
+        if (card.rank.equals(discard.get(discard.size() - 1).rank)
+                || card.suit.equals(discard.get(discard.size() - 1).suit)) {
+            System.out.println("Drew " + card);
+
+            if (Console.getInt(1, 2, "(1) Play? (2) Keep?", "Invalid Input") == 1) {
+                discard.add(card);
+                return;
+            }
+        }
         activeHand().draw(card);
     }
 
