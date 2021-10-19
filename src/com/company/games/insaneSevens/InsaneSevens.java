@@ -1,6 +1,7 @@
 package com.company.games.insaneSevens;
 
 import com.company.Console;
+import com.company.actors.AutoPlayer;
 import com.company.actors.Player;
 import com.company.decks.Card;
 import com.company.decks.DeckI;
@@ -32,13 +33,15 @@ public class InsaneSevens {
     }
 
     private void addPlayers() {
-        int playerCount = Console.getInt(1, 5,
-                "Enter amount of players 1-5", "Invalid Selection");
-        for (int i = 0; i < playerCount; i++) {
-            hands.add(new Hand(
-                    new Player(Console.getString("Enter Name", true),
-                            Console.getString("Enter Color", true))));
-        }
+//        int playerCount = Console.getInt(1, 5,
+//                "Enter amount of players 1-5", "Invalid Selection");
+//        for (int i = 0; i < playerCount; i++) {
+//            hands.add(new Hand(
+//                    new Player(Console.getString("Enter Name", true),
+//                            Console.getString("Enter Color", true))));
+//        }
+        hands.add(new Hand(new AutoPlayer("Freddy", "Cyan")));
+        hands.add(new Hand(new AutoPlayer("Keith", "Orange")));
     }
 
     public void playGame() {
@@ -53,16 +56,16 @@ public class InsaneSevens {
         while (turn(activeHand())) {
             passTurn();
         }
-        endRound();
         return Console.getInt(1, 2, "(1) Quit\t(2) Start next round", "Invalid Selection") != 1;
 
     }
 
     private void reshuffle() {
+        discard.clear();
         do {
-            deck.addDeck(discard);
-            discard.add(deck.deal());
+            deck = new StandardDeck();
             deck.shuffle();
+            discard.add(deck.deal());
         } while (discard.get(0).rank.equals(WILD));
     }
 
@@ -105,21 +108,21 @@ public class InsaneSevens {
             deck.addDeck(discard);
             discard.add(activeCard52);
         }
-        if(deck.size()==0){
+        if (deck.size() == 0) {
             System.out.println("No more cards in the deck");
             return;
         }
         Card card = deck.deal();
-
-        if (card.rank.equals(discard.get(discard.size() - 1).rank)
-                || card.suit.equals(discard.get(discard.size() - 1).suit)) {
-            System.out.println("Drew " + card);
-
-            if (Console.getInt(1, 2, "(1) Play? (2) Keep?", "Invalid Input") == 1) {
-                discard.add(card);
-                return;
-            }
-        }
+//
+//        if (card.rank.equals(discard.get(discard.size() - 1).rank)
+//                || card.suit.equals(discard.get(discard.size() - 1).suit)) {
+//            System.out.println("Drew " + card);
+//
+//            if (Console.getInt(1, 2, "(1) Play? (2) Keep?", "Invalid Input") == 1) {
+//                discard.add(card);
+//                return;
+//            }
+//        }
         activeHand().draw(card);
     }
 

@@ -49,35 +49,35 @@ public class AutoPlayer implements Actor {
     @Override
     public int getSuit(List<Card> cards, List<String> suits) {
         Map<String, Integer> suitFreq = new HashMap<>();
-        String suitMax = null;
+        String suitMax;
+        suitMax = "NA";
         for (Card card : cards) {
             if (suitFreq.containsKey(card.suit)) {
                 suitFreq.put(card.suit, (1 + suitFreq.get(card.suit)));
-                if (Objects.isNull(suitMax)) {
+                if (suitFreq.get(card.suit) > suitFreq.get(suitMax)) {
                     suitMax = card.suit;
-                } else {
-                    if (suitFreq.get(card.suit) > suitFreq.get(suitMax)) {
-                        suitMax = card.suit;
-                    }
                 }
             } else {
                 suitFreq.put(card.suit, 1);
+                if (suitMax.equals("NA")) {
+                    suitMax = card.suit;
+                }
             }
         }
-        assert suitMax != null;
         switch (suitMax) {
             case "\u2664":
-                return 1;
+                return 0;
             case "\u2665":
-                return 2;
+                return 1;
             case "\u2666":
-                return 3;
+                return 2;
             case "\u2667":
-                return 4;
+                return 3;
             default:
                 return 0;
         }
     }
+
 
     @Override
     public void win(int points) {
