@@ -33,15 +33,16 @@ public class InsaneSevens {
     }
 
     private void addPlayers() {
-//        int playerCount = Console.getInt(1, 5,
-//                "Enter amount of players 1-5", "Invalid Selection");
-//        for (int i = 0; i < playerCount; i++) {
-//            hands.add(new Hand(
-//                    new Player(Console.getString("Enter Name", true),
-//                            Console.getString("Enter Color", true))));
-//        }
-        hands.add(new Hand(new AutoPlayer("Freddy", "Cyan")));
-        hands.add(new Hand(new AutoPlayer("Keith", "Orange")));
+        int playerCount = Console.getInt(1, 5,
+                "Enter amount of players 1-5", "Invalid Selection");
+        for (int i = 0; i < playerCount; i++) {
+            hands.add(new Hand(
+                    new Player(Console.getString("Enter Name", true),
+                            Console.getString("Enter Color", true))));
+        }
+        //Auto players vvvvv
+//        hands.add(new Hand(new AutoPlayer("Fred", "Cyan")));
+//        hands.add(new Hand(new AutoPlayer("AutoBot", "Yellow")));
     }
 
     public void playGame() {
@@ -56,8 +57,8 @@ public class InsaneSevens {
         while (turn(activeHand())) {
             passTurn();
         }
+        endRound();
         return Console.getInt(1, 2, "(1) Quit\t(2) Start next round", "Invalid Selection") != 1;
-
     }
 
     private void reshuffle() {
@@ -116,9 +117,7 @@ public class InsaneSevens {
 
         if (card.rank.equals(discard.get(discard.size() - 1).rank)
                 || card.suit.equals(discard.get(discard.size() - 1).suit)) {
-            System.out.println("Drew " + card);
-
-            if (Console.getInt(1, 2, "(1) Play? (2) Keep?", "Invalid Input") == 1) {
+            if (activeHand().playDrawn(card)) {
                 discard.add(card);
                 return;
             }

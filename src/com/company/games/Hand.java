@@ -1,6 +1,8 @@
 package com.company.games;
 
 import com.company.Color;
+import com.company.Console;
+import com.company.actors.AutoPlayer;
 import com.company.decks.Card;
 import com.company.games.insaneSevens.Card52;
 import com.company.games.insaneSevens.InsaneSevens;
@@ -130,6 +132,14 @@ public class Hand {
         return player.getSuit(
                 Collections.unmodifiableList(cards),
                 suits);
+    }
+
+    public boolean playDrawn(Card card) {
+        if (player instanceof AutoPlayer) {
+            return false;
+        }
+        System.out.println("Drew " + card);
+        return Console.getInt(1, 2, "(1) Play? (2) Keep?", "Invalid Input") == 1;
     }
 
     private void displayCards() {
